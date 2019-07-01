@@ -23,7 +23,8 @@ clf.fit(X,y)
 ols = LinearRegression()
 ols.fit(X,y)
 
-plt.figure(figsize=(6,5))
+
+plt.subplot(221)
 plt.title("Weights of the model")
 plt.plot(clf.coef_ , color='lightgreen',          
         label="BayesianRidgeRegression")
@@ -33,7 +34,7 @@ plt.xlabel("Features")
 plt.ylabel("Value of the weights")
 plt.legend(loc='best',prop = dict(size=12))
 
-plt.figure(figsize=(6,5))
+plt.subplot(222)
 plt.title("Histogram of the weights")
 plt.hist(clf.coef_,bins=n_features,color='gold',log=True,   
             edgecolor='black')
@@ -44,7 +45,7 @@ plt.ylabel("Features")
 plt.xlabel("Values of the weights")
 plt.legend(loc="upper left")
 
-plt.figure(figsize=(6,5))
+plt.subplot(223)
 plt.title("Marginal log-likehood")
 plt.plot(clf.scores_, color='navy')
 plt.ylabel("Score")
@@ -66,11 +67,13 @@ X_plot = np.linspace(0,11,25)
 y_plot = f(X_plot, noise_amount=0)
 y_mean ,y_std = clf_poly.predict(np.vander(X_plot,degree),  
                         return_std=True)
-plt.figure(figsize=(6, 5))
+plt.subplot(224)
 plt.errorbar(X_plot, y_mean, y_std, color='navy',
              label="Polynomial Bayesian Ridge Regression",)
 plt.plot(X_plot, y_plot, color='gold', label="Ground Truth")
 plt.ylabel("Output y")
 plt.xlabel("Feature X")
 plt.legend(loc="lower left")
+
+
 plt.show()
